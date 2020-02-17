@@ -1,6 +1,9 @@
 package vecty
 
-import "reflect"
+import (
+	"reflect"
+	"unicode"
+)
 
 // batch renderer singleton
 var batch = &batchRenderer{idx: make(map[Component]int)}
@@ -952,7 +955,8 @@ func copyProps(src, dst Component) {
 	}
 	for i := 0; i < s.Elem().NumField(); i++ {
 		sf := s.Elem().Field(i)
-		if s.Elem().Type().Field(i).Tag.Get("vecty") == "prop" {
+		//if s.Elem().Type().Field(i).Tag.Get("vecty") == "prop" {
+		if unicode.IsUpper([]rune(s.Elem().Type().Field(i).Name)[0]) {
 			df := d.Elem().Field(i)
 			if sf.Type() != df.Type() {
 				panic("vecty: internal error (should never be possible, struct types are identical)")
