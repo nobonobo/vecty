@@ -57,10 +57,10 @@ func valueOf(v interface{}) jsObject {
 }
 
 func wrapObject(j js.Value) jsObject {
-	if j == js.Null() {
+	if j.Equal(js.Null()) {
 		return nil
 	}
-	if j == js.Undefined() {
+	if j.Equal(js.Undefined()) {
 		return undefined
 	}
 	return wrappedObject{j: j}

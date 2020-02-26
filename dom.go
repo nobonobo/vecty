@@ -1,6 +1,9 @@
 package vecty
 
-import "reflect"
+import (
+	"fmt"
+	"reflect"
+)
 
 // batch renderer singleton
 var batch = &batchRenderer{idx: make(map[Component]int)}
@@ -1233,7 +1236,9 @@ func init() {
 	if global == nil {
 		panic("vecty: only GopherJS and WebAssembly compilation is supported")
 	}
-	if global.Get("document") == undefined {
-		panic("vecty: only running inside a browser is supported")
-	}
+	//if global.Get("document") == undefined {
+	//	panic("vecty: only running inside a browser is supported")
+	//}
+	fmt.Printf("%#v", global.Get("document"))
+	fmt.Printf("%#v", undefined)
 }
